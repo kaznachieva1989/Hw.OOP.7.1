@@ -2,6 +2,11 @@ package com.company;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
 
@@ -35,18 +40,16 @@ public class Main {
             Object num = iter2.next();
             System.out.print(num + ", ");
         }
-
         ArrayList<String> list3 = new ArrayList<>();
-        list3.add(0, list1.get(0));
-        list3.add(1, list2.get(4));
-        list3.add(2, list1.get(1));
-        list3.add(3, list2.get(3));
-        list3.add(4, list1.get(2));
+        list3.addAll(list1);
+        Collections.sort(list2);
+        Collections.reverse(list2);
+        list3.add(1, list2.get(0));
+        list3.add(3, list2.get(1));
         list3.add(5, list2.get(2));
-        list3.add(6, list1.get(3));
-        list3.add(7, list2.get(1));
-        list3.add(8, list1.get(4));
-        list3.add(9, list2.get(0));
+        list3.add(7, list2.get(3));
+        list3.add(9, list2.get(4));
+
         System.out.println("\n Итак в списке C:");
         ListIterator listIterator = list3.listIterator();
         while (listIterator.hasNext()) {
@@ -54,6 +57,12 @@ public class Main {
             System.out.print(num + ",");
         }
 
+        Comparator<String> byLength = new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.length() - s2.length();
+            }
+        };
         Collections.sort(list3);
         System.out.println("\n Конечный список C");
         listIterator = list3.listIterator();
